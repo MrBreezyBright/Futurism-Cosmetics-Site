@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightCare - Future of Beauty</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;700;900&display=swap');
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #ff006e, #8338ec, #3a86ff);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --neon-pink: #ff006e;
+            --neon-purple: #8338ec;
+            --neon-blue: #3a86ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(ellipse at top, #0f0f23 0%, #000000 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* Enhanced Background Effects */
+        .hero-bg {
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 25%, #0f0f23 50%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 0, 110, 0.1), transparent, rgba(131, 56, 236, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.02) 50%, transparent 70%);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { transform: translateX(0%) translateY(0%) rotate(45deg); opacity: 1; }
+        }
+        
+        /* Advanced Neon Effects */
+        .neon-button {
+            background: var(--primary-gradient);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 25px rgba(255, 0, 110, 0.4), inset 0 0 25px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .neon-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 40px rgba(255, 0, 110, 0.8), inset 0 0 25px rgba(255, 255, 255, 0.2);
+            filter: brightness(1.2);
+        }
+        
+        .neon-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .neon-button:hover::before {
+            left: 100%;
+        }
+        
+        .neon-button:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        
+        /* Enhanced 3D Product Cards */
+        .product-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 25px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 25px;
+        }
+        
+        .product-card:hover {
+            transform: rotateY(8deg) rotateX(8deg) translateZ(20px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 0, 110, 0.3);
+            border-color: rgba(255, 0, 110, 0.5);
+        }
+        
+        .product-card:hover::before {
+            opacity: 0.05;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.08) rotateZ(2deg);
+            filter: brightness(1.1) saturate(1.2);
+        }
+        
+        /* Advanced Glass Morphism */
+        .glass {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .glass-intense {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Enhanced Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            animation: modalFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; backdrop-filter: blur(0px); }
+            to { opacity: 1; backdrop-filter: blur(10px); }
+        }
+        
+        .modal-content {
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.98), rgba(10, 10, 10, 0.95));
+            backdrop-filter: blur(40px);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 700px;
+            width: 95%;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: modalSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+        }
+        
+        @keyframes modalSlideUp {
+            from { transform: translateY(60px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        
+        /* Enhanced Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            right: -450px;
+            top: 0;
+            width: 450px;
+            height: 100vh;
+            background: linear-gradient(145deg, rgba(10, 10, 10, 0.98), rgba(20, 20, 20, 0.95));
+            backdrop-filter: blur(30px);
+            border-left: 2px solid rgba(255, 255, 255, 0.15);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .cart-sidebar.active {
+            right: 0;
+        }
+        
+        /* Advanced Filter Animations */
+        .filter-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        .filter-container.active {
+            max-height: 300px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Enhanced Form Inputs */
+        .futuristic-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 16px 20px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .futuristic-input:focus {
+            outline: none;
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .futuristic-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Loading States */
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Price Glow Effect */
+        .price-glow {
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+            animation: priceGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes priceGlow {
+            from { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink); }
+            to { text-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink), 0 0 40px var(--neon-pink); }
+        }
+        
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            min-width: 300px;
+            background: linear-gradient(145deg, rgba(40, 40, 40, 0.95), rgba(20, 20, 20, 0.9));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            z-index: 1001;
+            animation: notificationSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        @keyframes notificationSlide {
+            from { transform: translateX(100%) scale(0.8); opacity: 0; }
+            to { transform: translateX(0) scale(1); opacity: 1; }
+        }
+        
+        /* Parallax Effects */
+        .parallax-element {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 25px;
+                border-radius: 25px;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .hero-bg h1 {
+                font-size: 3rem;
+            }
+            
+            .neon-button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-bg h1 {
+                font-size: 2.5rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+        
+        /* Advanced Cart Animation */
+        .cart-item-enter {
+            animation: cartItemEnter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes cartItemEnter {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .cart-item-exit {
+            animation: cartItemExit 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes cartItemExit {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-50px); opacity: 0; }
+        }
+        
+        /* Product Badge */
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 3;
+            animation: badgePulse 2s infinite;
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Search Enhancement */
+        .search-container {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 25px rgba(255, 0, 110, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Bounce animation for cart */
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+            40%, 43% { transform: translateY(-15px); }
+            70% { transform: translateY(-7px); }
+            90% { transform: translateY(-3px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-intense">
+        <nav class="container mx-auto flex items-center justify-between p-4">
+            <div class="text-3xl font-black bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-['Orbitron']">
+                BrightCare
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#hero" class="hover:text-pink-400 transition-all duration-300 font-medium relative group">
+                    Home
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#products" class="hover:text-pink-400 transition-all duration-300 font-medium relative group">
+                    Products
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#about" class="hover:text-pink-400 transition-all duration-300 font-medium relative group">
+                    About
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#contact" class="hover:text-pink-400 transition-all duration-300 font-medium relative group">
+                    Contact
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="p-3 rounded-full glass hover:bg-white hover:bg-opacity-10 transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+                <button class="p-3 rounded-full glass hover:bg-white hover:bg-opacity-10 transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </button>
+                <div class="relative">
+                    <button id="cartToggle" class="p-3 rounded-full glass hover:bg-white hover:bg-opacity-10 transition-all duration-300 transform hover:scale-105">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 9H19"></path>
+                        </svg>
+                        <span id="cartCount" class="absolute -top-2 -right-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Enhanced Hero Section -->
+    <section id="hero" class="hero-bg min-h-screen flex items-center justify-center pt-20 parallax-element">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="mb-8">
+                <span class="glass px-6 py-2 rounded-full text-sm font-medium inline-block mb-4">
+                    ✨ The Future of Beauty is Here
+                </span>
+            </div>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black mb-8 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-['Orbitron'] leading-tight">
+                BrightCare
+            </h1>
+            <p class="text-xl md:text-2xl lg:text-3xl mb-12 text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Revolutionary cosmetics powered by quantum technology, sustainable ingredients, and AI-driven personalization
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <button class="neon-button text-lg px-10 py-5" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+                    Explore Collection
+                </button>
+                <button class="glass px-10 py-5 rounded-full hover:bg-white hover:bg-opacity-10 transition-all duration-300 flex items-center space-x-2">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Watch Demo</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Featured Products -->
+    <section class="py-32 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-['Orbitron']">
+                    Featured Products
+                </h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                    Discover our most innovative and popular beauty solutions
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="featuredProducts">
+                <!-- Featured products will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Product Catalog -->
+    <section id="products" class="py-32 px-4 bg-gradient-to-b from-transparent via-gray-900 via-opacity-30 to-transparent">
+        <div class="container mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-['Orbitron']">
+                    Complete Collection
+                </h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+                    Explore our full range of quantum-enhanced beauty products
+                </p>
+            </div>
+            
+            <!-- Enhanced Search Bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search products...">
+                <div class="search-icon">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Enhanced Filter Controls -->
+            <div class="mb-16">
+                <div class="flex justify-center mb-6">
+                    <button id="filterToggle" class="neon-button flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+                        </svg>
+                        <span>Advanced Filters</span>
+                    </button>
+                </div>
+                
+                <div id="filterContainer" class="filter-container glass-intense p-8 rounded-3xl max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-3 text-pink-400">Skin Type</label>
+                            <select id="skinTypeFilter" class="futuristic-input w-full">
+                                <option value="">All Types</option>
+                                <option value="oily">Oily</option>
+                                <option value="dry">Dry</option>
+                                <option value="combination">Combination</option>
+                                <option value="sensitive">Sensitive</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-3 text-purple-400">Fragrance</label>
+                            <select id="fragranceFilter" class="futuristic-input w-full">
+                                <option value="">All Fragrances</option>
+                                <option value="floral">Floral</option>
+                                <option value="citrus">Citrus</option>
+                                <option value="woody">Woody</option>
+                                <option value="unscented">Unscented</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-3 text-blue-400">Use Case</label>
+                            <select id="useCaseFilter" class="futuristic-input w-full">
+                                <option value="">All Uses</option>
+                                <option value="daily">Daily Care</option>
+                                <option value="night">Night Care</option>
+                                <option value="special">Special Occasion</option>
+                                <option value="treatment">Treatment</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-3 text-green-400">Price Range</label>
+                            <select id="priceFilter" class="futuristic-input w-full">
+                                <option value="">All Prices</option>
+                                <option value="0-50">Under $50</option>
+                                <option value="50-100">$50 - $100</option>
+                                <option value="100+">$100+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-center">
+                        <button id="clearFilters" class="glass px-6 py-3 rounded-full hover:bg-white hover:bg-opacity-10 transition-all duration-300">
+                            Clear All Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 product-grid" id="productGrid">
+                <!-- Products will be populated by JavaScript -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-16">
+                <button id="loadMoreBtn" class="glass px-8 py-4 rounded-full hover:bg-white hover:bg-opacity-10 transition-all duration-300 font-medium">
+                    Load More Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="p-8">
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="text-3xl font-bold font-['Orbitron']">Your Cart</h3>
+                <button id="closeCart" class="p-3 hover:bg-white hover:bg-opacity-10 rounded-full transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="cartItems" class="space-y-6 mb-8 max-h-96 overflow-y-auto">
+                <!-- Cart items will be populated by JavaScript -->
+            </div>
+            <div class="border-t border-white border-opacity-20 pt-6">
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between text-gray-300">
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-gray-300">
+                        <span>Shipping:</span>
+                        <span class="text-green-400">Free</span>
+                    </div>
+                    <div class="flex justify-between text-gray-300">
+                        <span>Tax:</span>
+                        <span id="cartTax">$0.00</span>
+                    </div>
+                    <div class="border-t border-white border-opacity-20 pt-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold">Total:</span>
+                            <span id="cartTotal" class="text-3xl font-bold price-glow">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="checkoutBtn" class="neon-button w-full py-5 text-lg font-bold">
+                    Proceed to Checkout
+                </button>
+                <button class="glass w-full py-4 rounded-2xl mt-4 hover:bg-white hover:bg-opacity-10 transition-all duration-300">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-8">
+                <h3 id="modalTitle" class="text-3xl font-bold font-['Orbitron']"></h3>
+                <button id="closeModal" class="p-3 hover:bg-white hover:bg-opacity-10 rounded-full transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="relative overflow-hidden rounded-3xl">
+                        <img id="modalImage" src="" alt="" class="w-full h-80 object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="glass-intense rounded-2xl p-6">
+                        <h4 class="font-bold mb-4 text-pink-400 text-lg">Product Demo</h4>
+                        <div class="bg-gray-900 rounded-xl h-40 flex items-center justify-center relative overflow-hidden group cursor-pointer">
+                            <div class="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <svg class="w-16 h-16 text-gray-400 group-hover:text-white transition-colors duration-300 relative z-10" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <div id="modalPrice" class="text-4xl font-bold price-glow mb-2"></div>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="flex text-yellow-400">
+                                ★★★★★
+                            </div>
+                            <span class="text-gray-400">(127 reviews)</span>
+                        </div>
+                    </div>
+                    <p id="modalDescription" class="text-gray-300 text-lg leading-relaxed"></p>
+                    
+                    <div class="glass-intense rounded-2xl p-6">
+                        <h4 class="font-bold mb-4 text-purple-400 text-lg">Quantum Ingredients</h4>
+                        <ul id="modalIngredients" class="space-y-2">
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-intense rounded-2xl p-6">
+                        <h4 class="font-bold mb-4 text-blue-400 text-lg">Key Benefits</h4>
+                        <div id="modalBenefits" class="grid grid-cols-2 gap-3">
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button id="modalAddToCart" class="neon-button flex-1 py-4 text-lg font-bold">
+                            Add to Cart
+                        </button>
+                        <button class="glass px-8 py-4 rounded-2xl hover:bg-white hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center space-x-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>AR Try-On</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content max-w-6xl">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-3xl font-bold font-['Orbitron']">Quantum Checkout</h3>
+                <button id="closeCheckout" class="p-3 hover:bg-white hover:bg-opacity-10 rounded-full transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                <!-- AI Personalization Engine -->
+                <div class="xl:col-span-1">
+                    <div class="glass-intense p-8 rounded-3xl mb-8">
+                        <h4 class="text-2xl font-bold mb-6 text-pink-400 flex items-center">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                            AI Beauty Profile
+                        </h4>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-3">Skin Tone Analysis</label>
+                                <div class="grid grid-cols-4 gap-2">
+                                    <button class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-200 to-yellow-300 border-2 border-transparent hover:border-pink-400 transition-all duration-300"></button>
+                                    <button class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-orange-300 border-2 border-transparent hover:border-pink-400 transition-all duration-300"></button>
+                                    <button class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-red-400 border-2 border-transparent hover:border-pink-400 transition-all duration-300"></button>
+                                    <button class="w-12 h-12 rounded-full bg-gradient-to-br from-red-900 to-yellow-900 border-2 border-transparent hover:border-pink-400 transition-all duration-300"></button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-3">Beauty Goals</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-gray-600 text-pink-400 focus:ring-pink-400 mr-3">
+                                        <span>Anti-aging & Wrinkle reduction</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-gray-600 text-pink-400 focus:ring-pink-400 mr-3">
+                                        <span>Hydration & Moisture</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-gray-600 text-pink-400 focus:ring-pink-400 mr-3">
+                                        <span>Acne treatment</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="rounded border-gray-600 text-pink-400 focus:ring-pink-400 mr-3">
+                                        <span>Brightening & Even tone</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-3">Allergies & Sensitivities</label>
+                                <textarea class="futuristic-input w-full h-20 resize-none" placeholder="List any known allergies or sensitivities..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-6 bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-blue-500/20 rounded-2xl border border-pink-400/30">
+                            <div class="flex items-center mb-3">
+                                <svg class="w-6 h-6 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+                                </svg>
+                                <h5 class="font-bold text-lg">AI Recommendation</h5>
+                            </div>
+                            <p class="text-sm text-gray-300 mb-3">Based on your profile, we recommend adding our Quantum Hydration Bundle for optimal results!</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-green-400 font-semibold">Save 25% • $89.99</span>
+                                <button class="neon-button text-xs px-4 py-2">Add Bundle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checkout Forms -->
+                <div class="xl:col-span-2 space-y-8">
+                    <!-- Delivery Information -->
+                    <div class="glass-intense p-8 rounded-3xl">
+                        <h4 class="text-2xl font-bold mb-6 text-purple-400 flex items-center">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            Delivery Information
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input type="text" placeholder="First Name" class="futuristic-input">
+                            <input type="text" placeholder="Last Name" class="futuristic-input">
+                            <input type="email" placeholder="Email Address" class="futuristic-input md:col-span-2">
+                            <input type="tel" placeholder="Phone Number" class="futuristic-input md:col-span-2">
+                            <input type="text" placeholder="Street Address" class="futuristic-input md:col-span-2">
+                            <input type="text" placeholder="City" class="futuristic-input">
+                            <input type="text" placeholder="ZIP / Postal Code" class="futuristic-input">
+                        </div>
+                        
+                        <div class="mt-6 p-4 glass rounded-2xl">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div>
+                                        <p class="font-semibold">Quantum Delivery</p>
+                                        <p class="text-sm text-gray-400">2-3 business days • Free shipping</p>
+                                    </div>
+                                </div>
+                                <span class="text-green-400 font-bold">FREE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment & Promo -->
+                    <div class="glass-intense p-8 rounded-3xl">
+                        <h4 class="text-2xl font-bold mb-6 text-blue-400 flex items-center">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                            </svg>
+                            Payment & Discounts
+                        </h4>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between p-4 glass rounded-2xl">
+                                <input type="text" placeholder="Enter promo code" class="bg-transparent border-none outline-none flex-1 text-white placeholder-gray-400">
+                                <button class="neon-button px-6 py-3 text-sm">Apply</button>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <button class="glass p-4 rounded-2xl hover:bg-white hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center space-x-3">
+                                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    <span class="font-semibold">PayPal</span>
+                                </button>
+                                <button class="glass p-4 rounded-2xl hover:bg-white hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center space-x-3">
+                                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    <span class="font-semibold">Apple Pay</span>
+                                </button>
+                            </div>
+                            
+                            <div class="border-t border-white border-opacity-20 pt-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between text-lg">
+                                        <span>Subtotal:</span>
+                                        <span id="checkoutSubtotal">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between text-lg">
+                                        <span>Shipping:</span>
+                                        <span class="text-green-400">Free</span>
+                                    </div>
+                                    <div class="flex justify-between text-lg">
+                                        <span>Tax:</span>
+                                        <span id="checkoutTaxAmount">$0.00</span>
+                                    </div>
+                                    <div class="border-t border-white border-opacity-20 pt-4">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-2xl font-bold">Total:</span>
+                                            <span id="checkoutTotal" class="text-3xl font-bold price-glow">$0.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button id="completeOrderBtn" class="neon-button w-full py-5 text-xl font-bold mt-6">
+                                    Complete Quantum Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced Product Data
+        const products = [
+            {
+                id: 1,
+                name: "Quantum Glow Serum",
+                price: 89.99,
+                image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop",
+                description: "Revolutionary anti-aging serum with quantum peptides and nano-technology for cellular renewal. Experience visible results in just 7 days.",
+                ingredients: ["Quantum Peptides", "Hyaluronic Acid", "Vitamin C Complex", "Retinol Alternative", "Marine Collagen"],
+                benefits: ["Reduces wrinkles", "Brightens skin", "Hydrates deeply", "Firms texture"],
+                skinType: "all",
+                fragrance: "unscented",
+                useCase: "night",
+                featured: true,
+                badge: "Bestseller"
+            },
+            {
+                id: 2,
+                name: "Holographic Highlighter",
+                price: 45.99,
+                image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=400&fit=crop",
+                description: "Multi-dimensional highlighter that creates an otherworldly glow with color-shifting technology and light-reflecting particles.",
+                ingredients: ["Holographic Pigments", "Light-Reflecting Pearls", "Jojoba Oil", "Vitamin E"],
+                benefits: ["Color-shifting glow", "Long-lasting", "Buildable coverage", "Smooth application"],
+                skinType: "all",
+                fragrance: "floral",
+                useCase: "special",
+                featured: true,
+                badge: "New"
+            },
+            {
+                id: 3,
+                name: "Neural Night Cream",
+                price: 125.99,
+                image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=400&fit=crop",
+                description: "Advanced night cream with neural stem cell technology for overnight skin regeneration and repair.",
+                ingredients: ["Neural Stem Cells", "Ceramides", "Peptide Complex", "Bakuchiol", "Squalane"],
+                benefits: ["Overnight repair", "Anti-aging", "Deep hydration", "Skin barrier support"],
+                skinType: "dry",
+                fragrance: "woody",
+                useCase: "night",
+                featured: true,
+                badge: "Premium"
+            },
+            {
+                id: 4,
+                name: "Cyber Lipstick",
+                price: 32.99,
+                image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop",
+                description: "Smart lipstick that adapts to your pH and changes color throughout the day for the perfect personalized shade.",
+                ingredients: ["pH-Responsive Pigments", "Vitamin E", "Hyaluronic Spheres", "Natural Waxes"],
+                benefits: ["pH-adaptive color", "Moisturizing", "Long-wearing", "Comfortable feel"],
+                skinType: "all",
+                fragrance: "citrus",
+                useCase: "daily",
+                featured: false
+            },
+            {
+                id: 5,
+                name: "Plasma Cleanser",
+                price: 68.99,
+                image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&h=400&fit=crop",
+                description: "Gentle yet effective cleanser using plasma technology to purify without stripping your skin's natural barrier.",
+                ingredients: ["Plasma Enzymes", "Coconut Derivatives", "Probiotics", "Chamomile Extract"],
+                benefits: ["Deep cleansing", "Gentle formula", "Maintains pH", "Probiotic boost"],
+                skinType: "sensitive",
+                fragrance: "unscented",
+                useCase: "daily",
+                featured: false
+            },
+            {
+                id: 6,
+                name: "Biotech Mascara",
+                price: 28.99,
+                image: "https://images.unsplash.com/photo-1631214540242-467e322c1958?w=400&h=400&fit=crop",
+                description: "Length-enhancing mascara with bioengineered fibers for dramatic, natural-looking lashes that last all day.",
+                ingredients: ["Bioengineered Fibers", "Keratin Complex", "Vitamin B5", "Carnauba Wax"],
+                benefits: ["Length enhancement", "Volume boost", "Smudge-proof", "Easy removal"],
+                skinType: "all",
+                fragrance: "unscented",
+                useCase: "daily",
+                featured: false
+            },
+            {
+                id: 7,
+                name: "Molecular Foundation",
+                price: 54.99,
+                image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=400&fit=crop",
+                description: "Revolutionary foundation with molecular technology that adapts to your skin tone and provides flawless coverage.",
+                ingredients: ["Adaptive Pigments", "Hyaluronic Microspheres", "SPF 30", "Antioxidant Complex"],
+                benefits: ["Tone-matching", "Full coverage", "SPF protection", "Hydrating formula"],
+                skinType: "combination",
+                fragrance: "unscented",
+                useCase: "daily",
+                featured: false
+            },
+            {
+                id: 8,
+                name: "Quantum Eye Cream",
+                price: 95.99,
+                image: "https://images.unsplash.com/photo-1609462938418-30c75b63eb6e?w=400&h=400&fit=crop",
+                description: "Advanced eye cream targeting dark circles, puffiness, and fine lines with quantum-enhanced peptides.",
+                ingredients: ["Quantum Peptides", "Caffeine", "Vitamin K", "Retinyl Palmitate"],
+                benefits: ["Reduces dark circles", "Minimizes puffiness", "Smooths fine lines", "Brightens eyes"],
+                skinType: "all",
+                fragrance: "unscented",
+                useCase: "treatment",
+                featured: false
+            }
+        ];
+
+        let cart = [];
+        let filteredProducts = [...products];
+        let displayedProducts = 8;
+        const TAX_RATE = 0.08;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            renderFeaturedProducts();
+            renderProductGrid();
+            setupEventListeners();
+            setupFilters();
+            updateCartUI();
+        });
+
+        // Render featured products
+        function renderFeaturedProducts() {
+            const container = document.getElementById('featuredProducts');
+            const featured = products.filter(p => p.featured);
+            
+            container.innerHTML = featured.map(product => `
+                <div class="product-card group" onclick="openProductModal(${product.id})">
+                    <div class="relative">
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                        <img src="${product.image}" alt="${product.name}" class="product-image mb-4">
+                    </div>
+                    <h3 class="text-lg font-bold mb-2 group-hover:text-pink-400 transition-colors duration-300">${product.name}</h3>
+                    <p class="text-gray-300 mb-4 text-sm">${product.description.substring(0, 80)}...</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xl font-bold text-pink-400">${product.price}</span>
+                        <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                    </div>
+                    <div class="flex space-x-2 mb-4">
+                        <button class="glass px-3 py-2 rounded-lg text-xs hover:bg-white hover:bg-opacity-20 transition-all flex-1" onclick="event.stopPropagation(); tryOnProduct(${product.id})">
+                            AR Try-On
+                        </button>
+                        <button class="glass px-3 py-2 rounded-lg text-xs hover:bg-white hover:bg-opacity-20 transition-all" onclick="event.stopPropagation(); toggleWishlist(${product.id})">
+                            ♡
+                        </button>
+                    </div>
+                    <button class="neon-button w-full py-3 text-sm font-bold" onclick="event.stopPropagation(); addToCart(${product.id})">
+                        Add to Cart
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Render product grid
+        function renderProductGrid() {
+            const container = document.getElementById('productGrid');
+            const productsToShow = filteredProducts.slice(0, displayedProducts);
+            
+            container.innerHTML = productsToShow.map(product => `
+                <div class="product-card group" onclick="openProductModal(${product.id})">
+                    <div class="relative">
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                        <img src="${product.image}" alt="${product.name}" class="product-image mb-6">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-pink-400 transition-colors duration-300">${product.name}</h3>
+                    <p class="text-gray-300 mb-4 text-sm leading-relaxed">${product.description.substring(0, 100)}...</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-pink-400">${product.price}</span>
+                        <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                    </div>
+                    <div class="flex space-x-2 mb-4">
+                        <button class="glass px-3 py-2 rounded-lg text-xs hover:bg-white hover:bg-opacity-20 transition-all flex-1" onclick="event.stopPropagation(); tryOnProduct(${product.id})">
+                            AR Try-On
+                        </button>
+                        <button class="glass px-3 py-2 rounded-lg text-xs hover:bg-white hover:bg-opacity-20 transition-all" onclick="event.stopPropagation(); toggleWishlist(${product.id})">
+                            ♡
+                        </button>
+                    </div>
+                    <button class="neon-button w-full py-3 text-sm font-bold" onclick="event.stopPropagation(); addToCart(${product.id})">
+                        Add to Cart
+                    </button>
+                </div>
+            `).join('');
+            
+            // Show/hide load more button
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (displayedProducts >= filteredProducts.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Cart toggle
+            document.getElementById('cartToggle').addEventListener('click', () => {
+                document.getElementById('cartSidebar').classList.add('active');
+            });
+
+            document.getElementById('closeCart').addEventListener('click', () => {
+                document.getElementById('cartSidebar').classList.remove('active');
+            });
+
+            // Modal controls
+            document.getElementById('closeModal').addEventListener('click', () => {
+                document.getElementById('productModal').classList.remove('active');
+            });
+
+            document.getElementById('closeCheckout').addEventListener('click', () => {
+                document.getElementById('checkoutModal').classList.remove('active');
+            });
+
+            // Checkout button
+            document.getElementById('checkoutBtn').addEventListener('click', () => {
+                document.getElementById('cartSidebar').classList.remove('active');
+                document.getElementById('checkoutModal').classList.add('active');
+                updateCheckoutTotals();
+            });
+
+            // Filter toggle
+            document.getElementById('filterToggle').addEventListener('click', () => {
+                const container = document.getElementById('filterContainer');
+                container.classList.toggle('active');
+            });
+
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                applyFilters(searchTerm);
+            });
+
+            // Load more products
+            document.getElementById('loadMoreBtn').addEventListener('click', () => {
+                displayedProducts += 4;
+                renderProductGrid();
+            });
+
+            // Clear filters
+            document.getElementById('clearFilters').addEventListener('click', () => {
+                document.getElementById('skinTypeFilter').value = '';
+                document.getElementById('fragranceFilter').value = '';
+                document.getElementById('useCaseFilter').value = '';
+                document.getElementById('priceFilter').value = '';
+                document.getElementById('searchInput').value = '';
+                applyFilters();
+            });
+
+            // Complete order
+            document.getElementById('completeOrderBtn').addEventListener('click', () => {
+                showOrderConfirmation();
+            });
+
+            // Close modals when clicking outside
+            document.getElementById('productModal').addEventListener('click', (e) => {
+                if (e.target.id === 'productModal') {
+                    document.getElementById('productModal').classList.remove('active');
+                }
+            });
+
+            document.getElementById('checkoutModal').addEventListener('click', (e) => {
+                if (e.target.id === 'checkoutModal') {
+                    document.getElementById('checkoutModal').classList.remove('active');
+                }
+            });
+
+            // Cart sidebar close when clicking outside
+            document.addEventListener('click', (e) => {
+                const sidebar = document.getElementById('cartSidebar');
+                const cartToggle = document.getElementById('cartToggle');
+                if (!sidebar.contains(e.target) && !cartToggle.contains(e.target) && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        }
+
+        // Setup filters
+        function setupFilters() {
+            const filters = ['skinTypeFilter', 'fragranceFilter', 'useCaseFilter', 'priceFilter'];
+            
+            filters.forEach(filterId => {
+                document.getElementById(filterId).addEventListener('change', () => applyFilters());
+            });
+        }
+
+        // Apply filters with search
+        function applyFilters(searchTerm = '') {
+            const skinType = document.getElementById('skinTypeFilter').value;
+            const fragrance = document.getElementById('fragranceFilter').value;
+            const useCase = document.getElementById('useCaseFilter').value;
+            const priceRange = document.getElementById('priceFilter').value;
+            const search = searchTerm || document.getElementById('searchInput').value.toLowerCase();
+
+            filteredProducts = products.filter(product => {
+                const matchesSearch = search === '' || 
+                    product.name.toLowerCase().includes(search) || 
+                    product.description.toLowerCase().includes(search) ||
+                    product.ingredients.some(ing => ing.toLowerCase().includes(search));
+
+                const matchesSkinType = !skinType || product.skinType === skinType || product.skinType === 'all';
+                const matchesFragrance = !fragrance || product.fragrance === fragrance;
+                const matchesUseCase = !useCase || product.useCase === useCase;
+                
+                let matchesPrice = true;
+                if (priceRange) {
+                    if (priceRange === '0-50') matchesPrice = product.price < 50;
+                    else if (priceRange === '50-100') matchesPrice = product.price >= 50 && product.price <= 100;
+                    else if (priceRange === '100+') matchesPrice = product.price > 100;
+                }
+
+                return matchesSearch && matchesSkinType && matchesFragrance && matchesUseCase && matchesPrice;
+            });
+
+            displayedProducts = 8;
+            renderProductGrid();
+        }
+
+        // Add to cart with animation
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            showNotification(`${product.name} added to cart!`, 'success');
+            
+            // Add cart bounce animation
+            const cartIcon = document.getElementById('cartToggle');
+            cartIcon.style.animation = 'none';
+            cartIcon.offsetHeight; // Trigger reflow
+            cartIcon.style.animation = 'bounce 0.6s ease-in-out';
+        }
+
+        // Remove from cart with animation
+        function removeFromCart(productId) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                showNotification(`${item.name} removed from cart`, 'info');
+                cart = cart.filter(item => item.id !== productId);
+                updateCartUI();
+            }
+        }
+
+        // Update quantity
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        // Enhanced cart UI update
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartSubtotal = document.getElementById('cartSubtotal');
+            const cartTax = document.getElementById('cartTax');
+            const cartTotal = document.getElementById('cartTotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const tax = subtotal * TAX_RATE;
+            const total = subtotal + tax;
+
+            cartCount.textContent = totalItems;
+            cartSubtotal.textContent = `${subtotal.toFixed(2)}`;
+            cartTax.textContent = `${tax.toFixed(2)}`;
+            cartTotal.textContent = `${total.toFixed(2)}`;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="text-center py-12">
+                        <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 9H19"></path>
+                        </svg>
+                        <p class="text-gray-400 text-lg">Your cart is empty</p>
+                        <p class="text-gray-500 text-sm mt-2">Add some quantum beauty products!</p>
+                    </div>
+                `;
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="glass-intense p-5 rounded-2xl cart-item-enter">
+                        <div class="flex items-center space-x-4">
+                            <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-xl">
+                            <div class="flex-1">
+                                <h4 class="font-bold text-lg">${item.name}</h4>
+                                <p class="text-pink-400 font-semibold text-lg">${item.price}</p>
+                                <div class="flex items-center text-yellow-400 text-sm mt-1">★★★★★</div>
+                            </div>
+                            <div class="flex flex-col items-center space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <button onclick="updateQuantity(${item.id}, -1)" class="w-10 h-10 flex items-center justify-center glass rounded-full hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-bold">-</button>
+                                    <span class="w-8 text-center font-bold text-lg">${item.quantity}</span>
+                                    <button onclick="updateQuantity(${item.id}, 1)" class="w-10 h-10 flex items-center justify-center glass rounded-full hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-bold">+</button>
+                                </div>
+                                <button onclick="removeFromCart(${item.id})" class="p-2 hover:bg-red-500 hover:bg-opacity-20 rounded-full transition-all duration-300 group">
+                                    <svg class="w-5 h-5 group-hover:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Enhanced notification system
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            
+            const icons = {
+                success: `<svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>`,
+                info: `<svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>`,
+                warning: `<svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>`
+            };
+
+            notification.innerHTML = `
+                <div class="flex items-center space-x-3">
+                    ${icons[type]}
+                    <div>
+                        <p class="font-semibold">${message}</p>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'notificationSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1) reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Enhanced product modal
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            const modal = document.getElementById('productModal');
+            
+            document.getElementById('modalTitle').textContent = product.name;
+            document.getElementById('modalImage').src = product.image;
+            document.getElementById('modalPrice').textContent = `${product.price}`;
+            document.getElementById('modalDescription').textContent = product.description;
+            
+            const ingredientsList = document.getElementById('modalIngredients');
+            ingredientsList.innerHTML = product.ingredients.map(ingredient => 
+                `<li class="flex items-center text-gray-300"><span class="w-2 h-2 bg-pink-400 rounded-full mr-3"></span>${ingredient}</li>`
+            ).join('');
+
+            const benefitsList = document.getElementById('modalBenefits');
+            benefitsList.innerHTML = product.benefits.map(benefit => 
+                `<div class="flex items-center text-sm text-gray-300">
+                    <svg class="w-4 h-4 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    ${benefit}
+                </div>`
+            ).join('');
+
+            document.getElementById('modalAddToCart').onclick = () => {
+                addToCart(productId);
+                modal.classList.remove('active');
+            };
+
+            modal.classList.add('active');
+        }
+
+        // AR Try-on feature (mockup)
+        function tryOnProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            showNotification(`AR Try-On activated for ${product.name}! 📱✨`, 'info');
+        }
+
+        // Wishlist toggle (mockup)
+        function toggleWishlist(productId) {
+            const product = products.find(p => p.id === productId);
+            showNotification(`${product.name} added to wishlist! 💖`, 'success');
+        }
+
+        // Update checkout totals
+        function updateCheckoutTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const tax = subtotal * TAX_RATE;
+            const total = subtotal + tax;
+
+            document.getElementById('checkoutSubtotal').textContent = `${subtotal.toFixed(2)}`;
+            document.getElementById('checkoutTaxAmount').textContent = `${tax.toFixed(2)}`;
+            document.getElementById('checkoutTotal').textContent = `${total.toFixed(2)}`;
+        }
+
+        // Order confirmation
+        function showOrderConfirmation() {
+            document.getElementById('checkoutModal').classList.remove('active');
+            
+            const orderNumber = Math.random().toString(36).substr(2, 9).toUpperCase();
+            showNotification(`Order ${orderNumber} confirmed! 🎉 Thank you for choosing BrightCare!`, 'success');
+            
+            // Clear cart
+            cart = [];
+            updateCartUI();
+            
+            // Simulate order processing
+            setTimeout(() => {
+                showNotification('Your quantum beauty products are being prepared! 🚚', 'info');
+            }, 2000);
+        }
+
+        // Enhanced parallax scrolling
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            
+            parallaxElements.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Loading states for buttons
+        function showLoading(buttonElement, originalText) {
+            buttonElement.innerHTML = `
+                <div class="flex items-center justify-center">
+                    <div class="loading w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                    Processing...
+                </div>
+            `;
+            buttonElement.disabled = true;
+            
+            setTimeout(() => {
+                buttonElement.innerHTML = originalText;
+                buttonElement.disabled = false;
+            }, 2000);
+        }
+
+        // Initialize application
+        updateCartUI();
+    </script>
+</body>
+</html>
